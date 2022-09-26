@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 
 from locales.language_de import lang_de
 from locales.language_en import lang_en
+from gamemodes.demo import gameMode
 import files
 import link
 
@@ -41,6 +42,9 @@ def init():
     root = tk.Tk()
     style = ttk.Style("darkly")
     root.title("LoeweTag PC Software")
+
+    gamemode = gameMode()
+
     files.file = files.settingsFile()
 
     files.file.loadFile()
@@ -161,6 +165,11 @@ def init():
     gui.refreshSerial.grid(row=2,column=0,sticky="NSWE")
     gui.connectSerial = ttk.Button(gui.linkFrame, text=lang.connect, bootstyle=gui.design_outline,command=link.link.change_serial)
     gui.connectSerial.grid(row=2,column=1,sticky="NSWE")
+
+    #gamemodes
+
+    gui.gamemodeDemoStart = ttk.Button(gui.gameFrame, text="Start Demo", bootstyle=gui.design_outline,command=gamemode.startGame)
+    gui.gamemodeDemoStart.grid(row=0, column=0, sticky="NSWE")
 
     #dev
 

@@ -7,7 +7,16 @@ import link
 
 logging.basicConfig(format='[main.py] %(levelname)s: %(message)s', level=logging.INFO)
 
-ui.init()
+
+def setup():
+    ui.init()
+
+    ui.root.title(ui.lang.software_name)
+    ui.root.bind('<F11>', toggleFullscreen)
+    ui.root.protocol("WM_DELETE_WINDOW", close)
+    ui.root.after(100,loop)
+    ui.root.after(100,link.link.refresh_serial)
+    ui.root.mainloop()
 
 #Functions
     
@@ -27,9 +36,5 @@ def close(): #prompts user for confirmation when closing window
         ui.root.destroy()
         print("End")
 
-ui.root.title(ui.lang.software_name)
-ui.root.bind('<F11>', toggleFullscreen)
-ui.root.protocol("WM_DELETE_WINDOW", close)
-ui.root.after(100,loop)
-ui.root.after(100,link.link.refresh_serial)
-ui.root.mainloop()
+if __name__ == "__name__":
+    setup()

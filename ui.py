@@ -20,15 +20,11 @@ class gui:
 
 class dev:
     def broadcastVars():
-        buf = f'@vars{dev.HP.get()}#{dev.MHP.get()}#{dev.SP.get()}#{dev.MSP.get()}#{dev.ATK.get()}#{dev.RT.get()}#{dev.PTS.get()}#{dev.KILL.get()}\n'
-        link.link.sendSerial(buf)
-        buf = f'@color{dev.RED.get()}#{dev.GREEN.get()}#{dev.BLUE.get()}\n'
-        link.link.sendSerial(buf)
+        link.link.sendArray(None, "vars", [dev.HP.get(),dev.MHP.get(),dev.SP.get(),dev.MSP.get(),dev.ATK.get(),dev.RT.get(),dev.PTS.get(),dev.KILL.get()])
+        link.link.sendArray(None, "color", [dev.RED.get(),dev.GREEN.get(),dev.BLUE.get()])
     def sendVars():
-        buf = f'{dev.address.get()}@vars{dev.HP.get()}#{dev.MHP.get()}#{dev.SP.get()}#{dev.MSP.get()}#{dev.ATK.get()}#{dev.RT.get()}#{dev.PTS.get()}#{dev.KILL.get()}\n'
-        link.link.sendSerial(buf)
-        buf = f'{dev.address.get()}@color{dev.RED.get()}#{dev.GREEN.get()}#{dev.BLUE.get()}\n'
-        link.link.sendSerial(buf)
+        link.link.sendArray(dev.address.get(), "vars", [dev.HP.get(),dev.MHP.get(),dev.SP.get(),dev.MSP.get(),dev.ATK.get(),dev.RT.get(),dev.PTS.get(),dev.KILL.get()])
+        link.link.sendArray(dev.address.get(), "color", [dev.RED.get(),dev.GREEN.get(),dev.BLUE.get()])
     def SendGamestate():
         link.link.sendSerial(f'@gamestate{dev.gamestate.get()}')
     
@@ -168,7 +164,7 @@ def init():
 
     #gamemodes
 
-    gui.gamemodeDemoStart = ttk.Button(gui.gameFrame, text="Start Demo", bootstyle=gui.design_outline,command=gamemode.startGame)
+    gui.gamemodeDemoStart = ttk.Button(gui.gameFrame, text="Start Demo", bootstyle=gui.design_outline,command=gamemode.initGame)
     gui.gamemodeDemoStart.grid(row=0, column=0, sticky="NSWE")
 
     #dev

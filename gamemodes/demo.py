@@ -5,7 +5,7 @@ class gameMode():
         self.name = "Demo"
         self.description = "A Demo to test the Lasertag system"
         self.icon = None
-        
+
         self.players = {}
         self.defaultHP = 100
         self.MHP = 100
@@ -19,7 +19,8 @@ class gameMode():
         pass
     def death(self):
         pass
-    def startGame(self):
+    def initGame(self):
         self.players = {}
         for i in link.link.node_ids:
             self.players[i] = [self.defaultHP,self.MHP,self.defaultSP,self.MSP,self.ATK,0,0]
+        print(self.players)

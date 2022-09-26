@@ -118,7 +118,7 @@ class SerialCommunication:
                 try:
                     Input = ast.literal_eval(Input)
                 except Exception as e:
-                    logging.error("Error while Parsing input: "+e+"String:"+Input)
+                    logging.error("Error while Parsing input: "+str(e)+"String:"+Input)
                 else:
                     self.handle_message(Input)
             if self.network_change == True:
@@ -127,6 +127,16 @@ class SerialCommunication:
     
     def sendSerial(self, msg):
         self.ser.write(msg.encode())
+
+    def sendArray(self, address, type, msgArray):
+        if address == None:
+            buf = f'@{type}'
+        else:
+            buf = f'{address}@{type}'
+        for i in msgArray:
+            buf = buf + i + '#'
+        buf = buf[:-1] + "\n"
+        self.ser.write(buf.encode())
 
 global link
 link = SerialCommunication()

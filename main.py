@@ -2,7 +2,6 @@ import logging
 from tkinter import messagebox
 
 import ui
-import gamemodes
 import link
 
 logging.basicConfig(format='[main.py] %(levelname)s: %(message)s', level=logging.INFO)

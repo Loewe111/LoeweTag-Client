@@ -1,6 +1,3 @@
-from numpy import broadcast
-
-
 class lang_en:
     devices = "Devices"
     gamemodes = "Gamemodes"

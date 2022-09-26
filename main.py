@@ -36,5 +36,5 @@ def close(): #prompts user for confirmation when closing window
         ui.root.destroy()
         print("End")
 
-if __name__ == "__name__":
+if __name__ == "__main__":
     setup()
